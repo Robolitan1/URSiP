@@ -38,7 +38,10 @@ import java.util.stream.IntStream;
 public class URSiPTask {
     public static String generateNum(List<Integer> numbers) {
         // just to clean and sorted incoming list of numbers
-        List<Integer> buff = numbers.stream().sorted().distinct().collect(Collectors.toList());
+        List<Integer> buff = numbers.stream()
+                .sorted()
+                .distinct()
+                .collect(Collectors.toList());
 
         // check first value to save time of stream manipulation
         if (buff.get(0) > 1) {
@@ -50,11 +53,12 @@ public class URSiPTask {
                 .filter(i -> containsPass(buff.get(i), buff.get(i + 1)))
                 .findFirst()
                 .orElse(0);
-        return index == 0 ? format(buff.get(buff.size() - 1) + 1) : format(buff.get(index) + 1);
+        return index == 0 ? format(buff.get(buff.size() - 1) + 1) :
+                            format(buff.get(index) + 1);
     }
 
     private static boolean containsPass(int currentElement, int nextElement) {
-        return nextElement - currentElement > 1 ? true : false;
+        return nextElement - currentElement > 1;
     }
 
     private static String format(int nextNumberOfProject) {
